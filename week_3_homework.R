@@ -19,10 +19,13 @@ View(surveys_base)
 no_na_surveys_base <- surveys_base %>% na.omit(surveys_base$weight)
 #or na.omit(surveys_base, surveys_base$weight)
 View(no_na_surveys_base)
-#or surveys_base[is.ne(surveys_base$weight),]
+#or surveys_base[is.na(surveys_base$weight),]
 #or surveys_base[!is.na(surveys_base$weight),]
+#complete.cases behavior creates a boolean vector where the trues are what you want
+
 
 challenge_base <- filter(no_na_surveys_base, weight >= 150)
+#or challenge_base <- surveys_base[which(surveys_base$weight>150),]
 View(challenge_base)
 
 #View(surveys)
