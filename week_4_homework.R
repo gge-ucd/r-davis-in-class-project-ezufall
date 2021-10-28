@@ -18,7 +18,10 @@ View(biggest_critters)
 
 colSums(is.na(surveys))#tally number of nas by column
 tally(surveys, is.na(surveys))#overall number of nas
-
+#tally is a wrapper for the n() function. you can't do anything else with it
+#summarize(surveys,n())is also good that it has the count and statistics with it. tally is a dead end
+#summarize(count = n(), mean = mean(weight, na.rm = T)) is another option for summ table
+#sum(is.na(surveys$weight)) counts but doesn't let you compare
 #adds avg weight of each species - sex combo to full survey tibble
 surveys_avg_weight <- surveys %>% filter(!is.na(weight)) %>% group_by(species, sex
                         ) %>% mutate(mean_weight = mean(weight)) %>% select(
