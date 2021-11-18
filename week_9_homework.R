@@ -24,6 +24,13 @@ ggplot(meanHourlyTemp, aes(x = month, y = mean_hourly_temp, color = hour)) +
    theme_classic() +
    labs(x = "Month", y = "Mean Hourly Temperature", title = "Mean Hourly Temperature by Month") 
 
-   
+#same exact thing in Berlin palette and with jitter :)
+ggplot(meanHourlyTemp, aes(x = month, y = mean_hourly_temp, color = hour)) +
+   geom_jitter(width = 0.2, height = 0, size = 4, alpha = 0.7)+
+   scale_color_scico(palette = 'berlin') +
+   theme_classic() +
+   labs(x = "Month", y = "Mean Hourly Temperature", title = "Mean Hourly Temperature by Month") 
+
+
   
 #ggsave can save your plots
