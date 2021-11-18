@@ -2,6 +2,7 @@ mloa <- read_csv("https://raw.githubusercontent.com/gge-ucd/R-DAVIS/master/data/
 library(dplyr)
 library(tidyr)
 library(lubridate)
+library(scico)
 #With the mloa data.frame, remove observations with missing values in rel_humid, temp_C_2m, and windSpeed_m_s. 
 
 mloaClean <- mloa %>% filter(rel_humid != -99, temp_C_2m != -999.9, windSpeed_m_s != -99.9) %>% 
@@ -17,10 +18,12 @@ mloaClean <- mloa %>% filter(rel_humid != -99, temp_C_2m != -999.9, windSpeed_m_
 meanHourlyTemp <- mloaClean %>% group_by(month = month(datetimeLocal, label = T), hour = hour(datetimeLocal)) %>% summarize(mean_hourly_temp = mean(temp_C_2m))
 
 #Finally, make a ggplot scatterplot of the mean monthly temperature, with points colored by local hour.
-ggplot(meanHourlyTemp, aes(x = month, y = mean_hourly_temp)) +
+ggplot(meanHourlyTemp, aes(x = month, y = mean_hourly_temp, color = hour)) +
    geom_point()+
-   theme_classic()
+   scale_color_scico(palette = 'roma') +
+   theme_classic() +
+   labs(x = "Month", y = "Mean Hourly Temperature", title = "Mean Hourly Temperature by Month") 
 
-ggplot(surveys_complete, aes(x = species_id, y = weight)) +
-   geom_point() +
-   theme_classic()
+   
+  
+#ggsave can save your plots
