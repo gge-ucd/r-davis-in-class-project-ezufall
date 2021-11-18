@@ -43,6 +43,7 @@ show_col(magma(16), labels = FALSE)
 show_col(inferno(16), labels = FALSE)
 show_col(plasma(16), labels = FALSE)
 show_col(viridis(16), labels = FALSE)
+#is continuous
 #scale_fill_viridis
 #scale_color_viridis
 
